@@ -48,11 +48,12 @@
             margin-right: auto;
             width: 1200px;
             max-width: 100%;
+            box-sizing: border-box;
           }
 
           a {
             font-size: 1.4rem;
-            color: $c1;
+            color: $c4;
             text-transform: unset;
             text-decoration: none;
             cursor: pointer;
@@ -62,7 +63,7 @@
             transition: color .3s;
 
             &:hover, &.active {
-              color: $c5;
+              color: $c3;
             }
           }
         }

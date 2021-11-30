@@ -24,8 +24,9 @@
     right: 0;
     z-index: 402;
     position: fixed;
-    border-bottom: 2px solid $c3;
-    background: $c4;
+    border-bottom: 2px solid $c2;
+    background: $c1;
+    box-shadow: 0 2px 10px rgba($c2, 0.2);
 
     > div.container {
       display: flex;
