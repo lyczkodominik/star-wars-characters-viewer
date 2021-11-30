@@ -15,5 +15,11 @@ module.exports = {
   plugins: [
   ],
   // add your custom rules here
-  rules: {}
+  rules: {
+    'indent': 'off',
+    'vue/singleline-html-element-content-newline': 'off',
+    'vue/html-closing-bracket-spacing': 'off',
+    'semi': 'off',
+    'vue/html-self-closing': 'off'
+  }
 }

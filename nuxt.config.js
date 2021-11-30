@@ -17,7 +17,7 @@ export default {
   css: [],
   styleResources: {
     scss: [
-      './assets/scss/variables.scss'
+      './assets/scss/variables.scss',
     ]
   },
   plugins: [],

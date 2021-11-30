@@ -2,19 +2,39 @@
 ## 1. Napisz aplikację Vue, która będzie wyświetlać postacie z Gwiezdnych Wojen.
 
 ### O aplikacji
+Komponent Header:
+- linkowanie do '/' (Home),
+- linkowanie do '/characters' (Characters),
+- linkowanie do 'favourites' (Favourites)
 
-Aplikacja powinna mieć menu z następującymi pozycjami: „Home”, „Characters”, „Favourites”
+Strona Characters:
+- pobieranie danych o liście postaci z API,
+- prezentacja danych w postaci listy z paginacją,
+- linkowanie do 'character/<id>' (Character),
+- możliwość togglowania postaci na liste ulubionych,
 
-Link Home kieruje na Homepage <br>
-Link Characters kieruje na stronę z listą postaci <br>
-Link Favourites kieruje na stronę z ulubionymi postaciami <br><br>
-Każda postać na stronie z listą postaci powinna mieć możliwość wyświetlenia oddzielnej, szczegółowej strony (/character/:id). <br>
-Na widoku szczegółowym powinny znajdować się szczegóły postaci:<br> 
-"name”, „height", "mass", "hair_color", "skin_color", "eye_color”, „birth_year”, „gender”, „homeworld”.<br>
-„homeworld” powinien być buttonem, po którego kliknięciu powinieneś pobrać z API informacje i wyświetlić je w modalu.<br><br>
-Strona z listą postaci powinna mieć paginację.<br><br>
-Na stronie z listą postaci powinna być możliwość dodawania/usuwania postaci do listy ulubionych.<br>
-Na stronie Favourites znajduje się lista ulubionych postaci. Każdą z postaci powinno dać się usunąć z listy ulubionych
+Strona Character:
+- pobieranie danych szczegółowych o postaci z API,
+- prezentacja danych w postaci tabeli,
+```
+{
+    name: ...,
+    height: ...,
+    mass: ...,
+    hair_color: ...,
+    skin_color: ...,
+    eye_color: ...,
+    birth_year: ...,
+    gender: ...,
+    homeworld: ...,
+}
+```
+- element tabeli 'homeworld' jest buttonem z ustawionym @clickiem na pobieranie danych z API i prezentacje ich w modalu,
+- modal,
+
+Strona Favourites:
+- możliwość usuwanie postaci z listy,
+- linkowanie do 'character/<id>' (Character),
 
 
 ### Wymagania
