@@ -5,15 +5,27 @@
     <div class="refresh-btn" @click="$fetch">Refresh list</div>
     <section>
       <nav v-if="list.length">
-        <PreviousButton :action="getPreviousPage" title="Previous page" :disable="!previousPageUrl"/>
+        <PreviousButton :action="getPreviousPage"
+                        title="Previous page"
+                        :disable="!previousPageUrl"
+        />
         <span class="current-page-index">{{ currentPageIndex }}</span>
-        <NextButton :action="getNextPage" title="Next page" :disable="!nextPageUrl"/>
+        <NextButton :action="getNextPage"
+                    title="Next page"
+                    :disable="!nextPageUrl"
+        />
       </nav>
       <List :list="list" :loading="loading"/>
       <nav v-if="list.length">
-        <PreviousButton :action="getPreviousPage" title="Previous page" :disable="!previousPageUrl"/>
+        <PreviousButton :action="getPreviousPage"
+                        title="Previous page"
+                        :disable="!previousPageUrl"
+        />
         <span class="current-page-index">{{ currentPageIndex }}</span>
-        <NextButton :action="getNextPage" title="Next page" :disable="!nextPageUrl"/>
+        <NextButton :action="getNextPage"
+                    title="Next page"
+                    :disable="!nextPageUrl"
+        />
       </nav>
       <div class="layer" :class="{ visible: loading}">
         <Loader/>

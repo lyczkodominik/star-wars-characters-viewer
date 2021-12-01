@@ -7,7 +7,9 @@
           <span class="name">{{ element.name }}</span>
         </div>
         <div class="btns-container">
-          <nuxt-link class="character-details-link" :to="`/character/${getIdFromUrl(element.url)}`">
+          <nuxt-link class="character-details-link"
+                     :to="`/character/${getIdFromUrl(element.url)}`"
+          >
             Show details
           </nuxt-link>
           <FavouriteButton :data="element"/>
