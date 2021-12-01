@@ -12,6 +12,9 @@
     name: 'Default',
     components: {
       Header
+    },
+    mounted () {
+      this.$store.commit('initialiseStore');
     }
   }
 </script>
@@ -39,6 +42,7 @@
 
       #__layout {
         height: 100%;
+        width: 100%;
 
         .default-layout {
           height: 100%;
@@ -53,18 +57,11 @@
 
           a {
             font-size: 1.4rem;
-            color: $c4;
             text-transform: unset;
             text-decoration: none;
             cursor: pointer;
             letter-spacing: .038rem;
-            position: relative;
             user-select: none;
-            transition: color .3s;
-
-            &:hover, &.active {
-              color: $c3;
-            }
           }
         }
       }

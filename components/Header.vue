@@ -22,7 +22,7 @@
     top: 0;
     left: 0;
     right: 0;
-    z-index: 402;
+    z-index: 1001;
     position: fixed;
     border-bottom: 2px solid $c2;
     background: $c1;
@@ -39,6 +39,22 @@
         display: flex;
         justify-content: flex-end;
         align-items: center;
+
+        a {
+          font-size: 1.4rem;
+          color: $c4;
+          text-transform: unset;
+          text-decoration: none;
+          cursor: pointer;
+          letter-spacing: .038rem;
+          position: relative;
+          user-select: none;
+          transition: color .3s;
+
+          &:hover, &.active {
+            color: $c3;
+          }
+        }
 
         a, .lang-btn {
           font-size: 1.6rem !important;

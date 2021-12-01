@@ -20,6 +20,7 @@ module.exports = {
     'vue/singleline-html-element-content-newline': 'off',
     'vue/html-closing-bracket-spacing': 'off',
     'semi': 'off',
-    'vue/html-self-closing': 'off'
+    'vue/html-self-closing': 'off',
+    'vue/max-attributes-per-line': 'off'
   }
 }
