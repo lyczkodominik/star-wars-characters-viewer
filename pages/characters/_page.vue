@@ -149,7 +149,7 @@
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        margin: 20px 15px;
+        margin: 20px 43px 20px 15px;;
 
         .current-page-index {
           font-size: 1.6rem;
