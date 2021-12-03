@@ -41,27 +41,27 @@
       pointer-events: none;
 
       .arrow{
-        border-color: $c6 !important;
+        border-color: $c9 !important;
       }
 
       .title{
-        color: $c6 !important;
+        color: $c9 !important;
       }
     }
 
     &:hover {
       .arrow{
-        border-color: $c2;
+        border-color: $c4;
       }
 
       .title{
-        color: $c2;
+        color: $c4;
       }
     }
 
     .arrow {
-      border-left: 4px solid $c1;
-      border-top: 4px solid $c1;
+      border-left: 4px solid $c10;
+      border-top: 4px solid $c10;
       border-radius: 1px;
       width: 20px;
       height: 20px;
@@ -70,7 +70,7 @@
     }
 
     .title {
-      color: $c1;
+      color: $c10;
       font-size: 1.6rem;
       margin-left: -5px;
       transition: color .3s;

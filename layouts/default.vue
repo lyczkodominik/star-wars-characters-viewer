@@ -20,18 +20,20 @@
 </script>
 
 <style lang="scss">
+  * {
+    box-sizing: border-box;
+  }
+
   html, body {
     padding: 0;
     margin: 0;
     position: relative;
     font-size: 10px;
+    color: $c7;
     height: 100vh;
   }
 
   body {
-    box-sizing: border-box;
-    padding-top: $defaultHeaderHeight;
-
     #__nuxt {
       display: flex;
       align-items: flex-start;
@@ -41,11 +43,16 @@
       font-family: Roboto, Lato, Helvetica Neue, Arial, Helvetica, sans-serif;
 
       #__layout {
-        height: 100%;
+        display: flex;
         width: 100%;
+        min-height: 100%;
 
         .default-layout {
-          height: 100%;
+          flex-grow: 1;
+          padding-top: $defaultHeaderHeight;
+          position: relative;
+          background-image: url("~/static/bg.jpg");
+          background-size: 100% 100%;
 
           .container {
             margin-left: auto;
@@ -56,7 +63,6 @@
           }
 
           a {
-            font-size: 1.4rem;
             text-transform: unset;
             text-decoration: none;
             cursor: pointer;

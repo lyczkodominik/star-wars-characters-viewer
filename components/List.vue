@@ -8,11 +8,11 @@
         </div>
         <div class="btns-container">
           <nuxt-link class="character-details-link"
-                     :to="`/character/${getIdFromUrl(element.url)}`"
+                     :to="getCharacterUrl(element)"
           >
             Show details
           </nuxt-link>
-          <FavouriteButton :data="element"/>
+          <FavouriteButton :data="element" :current-page-index="currentPageIndex"/>
         </div>
       </li>
     </ul>
@@ -31,11 +31,26 @@
       list: {
         type: Array,
         default: () => []
+      },
+      currentPageIndex: {
+        type: String,
+        default: null
       }
     },
     methods: {
       getIdFromUrl (url) {
         return url.split('people/').pop().slice(0, -1)
+      },
+      getCharacterUrl (element) {
+        let temp = `/character/${this.getIdFromUrl(element.url)}`
+
+        if (this.currentPageIndex) {
+          temp += `?page=${this.currentPageIndex}`
+        } else if (element.page) {
+          temp += `?page=${element.page}`
+        }
+
+        return temp;
       }
     }
   }
@@ -47,7 +62,7 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    width: 700px;
+    width: 100%;
     max-width: 100%;
     padding: 0;
     margin: 0;
@@ -55,9 +70,9 @@
 
     ul {
       display: grid;
-      grid-template-columns: repeat(1, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       grid-column-gap: 20px;
-      grid-row-gap: 10px;
+      grid-row-gap: 20px;
       width: 100%;
       list-style: none;
       padding: 0;
@@ -69,10 +84,10 @@
         align-items: center;
         box-sizing: border-box;
         border-radius: 3px;
-        border: 1px solid $c1;
+        border: 1px solid $c7;
         font-size: 1.4rem;
         padding: 15px;
-        color: $c1;
+        color: $c7;
 
         .text-container {
           display: flex;
@@ -105,14 +120,13 @@
             height: 40px;
             position: relative;
             background: none;
-            border: 2px solid;
-            color: var(--color);
+            border: 2px solid var(--color);
             transition: 0.3s;
+            color: $c7;
 
             &:hover {
               box-shadow: inset 100px 0 0 0 var(--color);
               border-color: var(--color);
-              color: $c7;
             }
           }
         }

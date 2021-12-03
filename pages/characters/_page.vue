@@ -2,7 +2,6 @@
   <main class="container characters-page">
     <h1>Characters</h1>
     <p class="total-characters-count">Total number of characters: {{ count }}</p>
-    <div class="refresh-btn" @click="$fetch">Refresh list</div>
     <section>
       <nav v-if="list.length">
         <PreviousButton :action="getPreviousPage"
@@ -15,7 +14,7 @@
                     :disable="!nextPageUrl"
         />
       </nav>
-      <List :list="list" :loading="loading"/>
+      <List :list="list" :loading_="loading_" :current-page-index="currentPageIndex"/>
       <nav v-if="list.length">
         <PreviousButton :action="getPreviousPage"
                         title="Previous page"
@@ -27,11 +26,11 @@
                     :disable="!nextPageUrl"
         />
       </nav>
-      <div class="layer" :class="{ visible: loading}">
+      <div class="layer" :class="{ visible: loading_}">
         <Loader/>
         <h2>Loading data...</h2>
       </div>
-      <h2 v-if="error" class="error">{{ error }}</h2>
+      <h2 v-if="error_" class="error_">{{ error_ }}</h2>
     </section>
   </main>
 </template>
@@ -54,39 +53,45 @@
     data () {
       return {
         defaultUrl: 'https://swapi.dev/api/people',
+        loading_: false,
         list: [],
         previousPageUrl: null,
+        error_: null,
         nextPageUrl: null,
         count: 0,
-        loading: false,
-        currentPageIndex: 1,
-        error: null
+        currentPageIndex: '1'
       }
     },
     async fetch () {
-      await this.getData(this.defaultUrl)
+      await this.getData(this.url)
+    },
+    computed: {
+      page () {
+        return this.$route.params.page
+      },
+      url () {
+        if (this.page) {
+          return `https://swapi.dev/api/people/?page=${this.page}`
+        } else {
+          return 'https://swapi.dev/api/people'
+        }
+      }
     },
     methods: {
-      async getPreviousPage () {
-        await this.getData(this.previousPageUrl)
-      },
-      async getNextPage () {
-        await this.getData(this.nextPageUrl)
-      },
       getData (url) {
-        this.loading = true
+        this.loading_ = true
 
         return this.$axios.get(url)
             .then((response) => {
-              this.error = null;
+              this.error_ = null
               this.setCurrentPage(url)
               this.assignResponseData(response)
             })
             .catch((err) => {
-              this.error = `Fetching data failed... error ${err.response.status}`;
+              this.error_ = `Fetching data failed... error ${err.response.status}`
             })
             .then(() => {
-              this.loading = false
+              this.loading_ = false
             })
       },
       assignResponseData (response) {
@@ -99,10 +104,16 @@
         const temp = url.replace('https://swapi.dev/api/people', '')
 
         if (temp.length === 0) {
-          this.currentPageIndex = 1
+          this.currentPageIndex = '1'
         } else {
           this.currentPageIndex = temp.replace('/?page=', '')
         }
+      },
+      async getPreviousPage () {
+        await this.getData(this.previousPageUrl)
+      },
+      async getNextPage () {
+        await this.getData(this.nextPageUrl)
       }
     }
   }
@@ -122,28 +133,6 @@
       margin: 0 0 10px 0;
     }
 
-    .refresh-btn {
-      --color: #2f0c81;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      width: 100px;
-      height: 40px;
-      position: relative;
-      background: none;
-      border: 2px solid;
-      color: var(--color);
-      transition: 0.3s;
-      font-size: 1.6rem;
-
-      &:hover {
-        box-shadow: inset 100px 0 0 0 var(--color);
-        border-color: var(--color);
-        color: $c7;
-      }
-    }
-
     section {
       display: flex;
       flex-direction: column;
@@ -152,7 +141,7 @@
       padding: 15px;
       width: 100%;
 
-      .error{
+      .error_ {
         color: $c5;
       }
 
@@ -174,7 +163,7 @@
         justify-content: center;
         align-items: center;
         position: absolute;
-        top: $defaultHeaderHeight;
+        top: 0;
         left: 0;
         height: 100%;
         width: 100%;

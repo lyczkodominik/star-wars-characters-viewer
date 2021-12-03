@@ -1,7 +1,9 @@
 <template>
   <header>
     <div class="container">
-      <div class="logo"/>
+      <nuxt-link to="/" class="logo-btn" title="DomkiLetniskowe.org">
+        <img src="/logo.png" alt="star wars" width="138" height="60">
+      </nuxt-link>
       <nav>
         <nuxt-link to="/">Home</nuxt-link>
         <nuxt-link to="/characters">Characters</nuxt-link>
@@ -24,9 +26,8 @@
     right: 0;
     z-index: 1001;
     position: fixed;
-    border-bottom: 2px solid $c2;
-    background: $c1;
-    box-shadow: 0 2px 10px rgba($c2, 0.2);
+    box-shadow: 0 2px 10px rgba(black, 0.2);
+    background-image: url("~static/header-bg.jpg");
 
     > div.container {
       display: flex;
@@ -35,6 +36,10 @@
       padding: 15px;
       box-sizing: border-box;
 
+      .logo-btn{
+
+      }
+
       nav {
         display: flex;
         justify-content: flex-end;
@@ -42,7 +47,7 @@
 
         a {
           font-size: 1.4rem;
-          color: $c4;
+          color: $c10;
           text-transform: unset;
           text-decoration: none;
           cursor: pointer;
@@ -52,7 +57,7 @@
           transition: color .3s;
 
           &:hover, &.active {
-            color: $c3;
+            color: $c4;
           }
         }
 

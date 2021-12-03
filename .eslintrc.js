@@ -16,11 +16,12 @@ module.exports = {
   ],
   // add your custom rules here
   rules: {
-    'indent': 'off',
+    indent: 'off',
     'vue/singleline-html-element-content-newline': 'off',
     'vue/html-closing-bracket-spacing': 'off',
-    'semi': 'off',
+    semi: 'off',
     'vue/html-self-closing': 'off',
-    'vue/max-attributes-per-line': 'off'
+    'vue/max-attributes-per-line': 'off',
+    'no-extra-boolean-cast': 'off'
   }
 }

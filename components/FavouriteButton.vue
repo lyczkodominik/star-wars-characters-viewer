@@ -3,8 +3,8 @@
        :class="{ isInFavourites }"
        @click="isInFavourites ? remove() : add()"
   >
-      <span>Remove from favourites</span>
-      <span>Add to favourites</span>
+    <span>Remove from favourites</span>
+    <span>Add to favourites</span>
   </div>
 </template>
 
@@ -14,6 +14,10 @@
     props: {
       data: {
         type: Object,
+        default: null
+      },
+      currentPageIndex: {
+        type: String,
         default: null
       }
     },
@@ -30,7 +34,12 @@
         this.$store.commit('favourites/remove', this.data.url)
       },
       add () {
-        this.$store.commit('favourites/add', this.data)
+        this.$store.commit('favourites/add', this.getPayload())
+      },
+      getPayload () {
+        const temp = this.data
+        temp.page = this.currentPageIndex
+        return temp
       }
     }
   }
@@ -46,8 +55,8 @@
     height: 40px;
     position: relative;
     background: none;
-    border: 2px solid;
-    color: var(--color);
+    border: 2px solid var(--color);
+    color: $c7;
     transition: 0.3s;
 
     &:hover {
@@ -56,14 +65,14 @@
       color: $c7;
     }
 
-    &.isInFavourites{
+    &.isInFavourites {
       --color: #9f0311;
 
-      span:first-child{
+      span:first-child {
         opacity: 1;
       }
 
-      span:last-child{
+      span:last-child {
         opacity: 0;
       }
     }
@@ -75,14 +84,14 @@
       width: 100%;
       top: 50%;
       transform: translateY(-50%);
-      transition: opacity.3s;
+      transition: opacity .3s;
     }
 
-    span:first-child{
+    span:first-child {
       opacity: 0;
     }
 
-    span:last-child{
+    span:last-child {
       opacity: 1;
     }
   }
