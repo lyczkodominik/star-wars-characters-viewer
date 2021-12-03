@@ -13,7 +13,35 @@
 </template>
 
 <script>
-  export default {}
+  import { configurableOptions, configurableSelections } from '@/assets/parserData'
+
+  export default {
+    name: 'Home',
+    mounted () {
+      console.log('sumAllFunctionArguments', this.sumAllFunctionArguments(1, 10, 100, 1000, 10000))
+      console.log('getSelectedOptionsObject', this.getSelectedOptionsObject(configurableOptions, configurableSelections))
+    },
+    methods: {
+      // TASK 2
+      sumAllFunctionArguments: (...args) => args.reduce((a, b) => a + b),
+
+      // TASK 3
+      getSelectedOptionsObject: (options, selections) => {
+        const selectionInfo = {}
+
+        selections.forEach((selection, i) => {
+          const resultByOptionId = options.find(opt => opt.attribute_id.toString() === selection.option_id)
+          const resultByOptionValue = options.find(opt => opt.value_index === selection.option_value)
+
+          if (resultByOptionId && resultByOptionValue) {
+            selectionInfo[resultByOptionId.attribute_code] = resultByOptionValue.option_title
+          }
+        })
+
+        return selectionInfo
+      }
+    }
+  }
 </script>
 
 <style scoped lang="scss">
